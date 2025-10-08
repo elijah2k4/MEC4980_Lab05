@@ -101,10 +101,11 @@ void OverheadSignal(char c){
   int colorSig = 1;
   if (c == 'w'){
     armSig = armW; 
-    while (colorSig !=1){
+    // while loop and ones below it ensure there are not misloads and ensures there is actually a part in the load area before sending a signal to the robot to pick it up 
+    while (colorSig ==1){
       colorSig = P1.readDiscrete(modInput, lbWhite);
-      delay(50);
       Serial.println(colorSig);
+      delay(200);
     } 
     if (colorSig != 1){
       Serial.println("Robot moves to grab the WHITE cylinder");
@@ -112,20 +113,20 @@ void OverheadSignal(char c){
     }
   } else if (c == 'r'){
     armSig = armR; 
-    while (colorSig !=1){
+    while (colorSig ==1){
       colorSig = P1.readDiscrete(modInput, lbRed);
-      delay(50);
       Serial.println(colorSig);
+      delay(200);
     } 
     if (colorSig != 1){
       Serial.println("Robot moves to grab the RED cylinder");
       // P1.writeDiscrete(true, modOutput, armSig);
     }  
   } else {
-    while (colorSig !=1){
+    while (colorSig ==1){
       colorSig = P1.readDiscrete(modInput, lbBlue);
-      delay(50);
       Serial.println(colorSig);
+      delay(200);
     } 
     if (colorSig != 1){
       Serial.println("Robot moves to grab the BLUE cylinder");
